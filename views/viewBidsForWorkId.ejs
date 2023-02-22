@@ -1,0 +1,24 @@
+<%- include("./partials/head.ejs", varTitle = "Bids") %>
+<body>
+  
+  
+  <h2>   Bids </h2>
+
+  <% varBids.forEach((bid) => { %>
+  <div class="card">
+  <h5> Bid by </h5> <p> <%= bid.keyBidByUserId %></p>
+  <h5> Budget </h5> <p> <%= bid.keyBidBudget %></p>
+
+  </div>
+  <% }); %>
+
+</body>
+</html>
+
+<style>
+  .card{
+    margin: 8px;
+    padding: 8px;
+    border: 1px solid grey;
+  }
+</style>
