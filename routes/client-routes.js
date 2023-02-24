@@ -2,12 +2,23 @@ const express = require('express');
 const router = require("express").Router()
 const Works = require("../models/works-model") 
 
-
-router.get("/postawork", (req, res)=>{
+//Import middleware for Auth check
+const authCheck = (req, res, next)=>{
+  if(req.user){
+      //User is logged in 
+      next();
+  }
+  else{
+      //User is not logged in 
+      res.redirect("/auth/login")
+  }
+}
+router.get("/postawork", authCheck, (req, res)=>{ 
     res.render("clientPostaWork");  
-});
+}); 
 
-router.post("/postawork",async (req, res)=>{
+//async - await for not crashing the site and to avoid undefined values
+router.post("/postawork", async (req, res)=>{
    
     const newWork = new Works({ 
         keyTitle : req.body.ipTitle,     

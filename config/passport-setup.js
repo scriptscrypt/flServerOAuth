@@ -39,20 +39,18 @@ passport.use(new GoogleStrategy({
         }
         else{
 
-            // Create new user in our DB
-            new User({
-                //From google 
-                keyUserName: profile.displayName,
-                keyGoogleId: profile.id, 
-                // keyFirstName: profile., 
-
-            }).save().then(
-                (newUser)=>{
-                    console.log("Saved to DB ", newUser)
-                    done(null, newUser)
-
-                })
-            
+        // Create new user in our DB
+        new User({
+            //From google 
+            keyUserName: profile.displayName,
+            keyGoogleId: profile.id, 
+            // keyFirstName: profile., 
+        }).save().then(
+            (newUser)=>{
+                console.log("Saved to DB ", newUser)
+                done(null, newUser)
+            })
+        
         }
     })
 })

@@ -1,19 +1,8 @@
 const router = require("express").Router();
-
-//Middleware 
-const authCheck = (req, res, next)=>{
-    if(req.user){
-        //User is logged in 
-        next();
-    }
-    else{
-        //User is not logged in 
-        res.redirect("/auth/login")
-    }
-}
+const authCheck = require("./conditionals").authCheck
 
 router.get("/view", authCheck, (req, res)=>{
-    res.render("profile", {varName : req.user.username, varGoogleId : req.user.googleId})
+    res.render("profile", {varName : req.user.keyUserName, varGoogleId : req.user.keyGoogleId})
 })
 
 
