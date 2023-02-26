@@ -22,6 +22,9 @@ app.use(bodyParser.urlencoded({
     extended:false
 }));
 
+
+
+
 // Import passport-setup
 const passportSetup = require("./config/passport-setup")
 //Import Mongoose 
@@ -43,6 +46,15 @@ const passport = require("passport")
 // Set up view engine 
 app.set("view engine", "ejs")
 
+
+// Configured to allow cross-origin requests    
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+
+  
 //Setup Cookies
 app.use(cookieSession({
     maxAge: 24*60**60*1000,
